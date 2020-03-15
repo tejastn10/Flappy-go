@@ -40,8 +40,14 @@ func run() error {
 
 	time.Sleep(5 * time.Second)
 
-	if err := drawBackground(r); err != nil {
-		return fmt.Errorf("could not draw background: %v", err)
+	s, err := newScene(r)
+	if err != nil {
+		return fmt.Errorf("could not create scene: %v", err)
+	}
+	defer s.destroy()
+
+	if err := s.paint(r); err != nil {
+		return fmt.Errorf("could not paint scene: %v", err)
 	}
 
 	time.Sleep(5 * time.Second)
