@@ -123,7 +123,6 @@ func (p *pipe) paint(r *sdl.Renderer, texture *sdl.Texture) error {
 		flip = sdl.FLIP_VERTICAL
 	}
 
-	r.CopyEx(texture, nil, rect, 0, nil, flip)
 	if err := r.CopyEx(texture, nil, rect, 0, nil, flip); err != nil {
 		return fmt.Errorf("could not copy background: %v", err)
 	}
