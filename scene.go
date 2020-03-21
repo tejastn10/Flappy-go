@@ -46,7 +46,6 @@ func (s *scene) run(events <-chan sdl.Event, r *sdl.Renderer) <-chan error {
 				if done := s.handleEvent(e); done {
 					return
 				}
-				return
 			case <-tick:
 				s.update()
 				if s.bird.isDead() {
@@ -69,7 +68,7 @@ func (s *scene) handleEvent(event sdl.Event) bool {
 		return true
 	case *sdl.MouseButtonEvent:
 		s.bird.jump()
-	case *sdl.MouseMotionEvent, *sdl.WindowEvent, *sdl.TouchFingerEvent:
+	case *sdl.MouseMotionEvent, *sdl.WindowEvent, *sdl.TouchFingerEvent, *sdl.CommonEvent:
 	default:
 		log.Printf("unknown event: %T", event)
 	}
